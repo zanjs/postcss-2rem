@@ -7,13 +7,13 @@ var filterPropList = require("./lib/filter-prop-list");
 var type = require("./lib/type");
 
 var defaults = {
-  rootValue: 16,
+  rootValue: 75,
   unitPrecision: 6,
   selectorBlackList: [],
   propList: ["font", "font-size", "line-height", "letter-spacing"],
   replace: true,
   mediaQuery: false,
-  minPixelValue: 2,
+  minPixelValue: 0,
   exclude: [],
   include: []
 };
@@ -74,7 +74,7 @@ module.exports = postcss.plugin("postcss-2rem", function(options) {
         return;
 
       var value = decl.value.replace(pxRegex, pxReplace);
-
+      console.log(value);
       // if rem unit already exists, do not add or replace
       if (declarationExists(decl.parent, decl.prop, value)) return;
 

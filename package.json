@@ -1,7 +1,7 @@
 {
   "name": "postcss-2rem",
   "description": "A CSS post-processor that converts px to rem.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Julian",
   "license": "MIT",
   "main": "index.js",
