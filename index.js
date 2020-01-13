@@ -8,12 +8,12 @@ var type = require("./lib/type");
 
 var defaults = {
   rootValue: 16,
-  unitPrecision: 5,
+  unitPrecision: 6,
   selectorBlackList: [],
   propList: ["font", "font-size", "line-height", "letter-spacing"],
   replace: true,
   mediaQuery: false,
-  minPixelValue: 0,
+  minPixelValue: 2,
   exclude: [],
   include: []
 };
@@ -27,7 +27,7 @@ var legacyOptions = {
   propWhiteList: "propList"
 };
 
-module.exports = postcss.plugin("postcss-pxtorem", function(options) {
+module.exports = postcss.plugin("postcss-2rem", function(options) {
   convertLegacyOptions(options);
 
   var opts = objectAssign({}, defaults, options);
@@ -47,9 +47,9 @@ module.exports = postcss.plugin("postcss-pxtorem", function(options) {
     if (include.length !== 0) {
       include.forEach(item => {
         if (type.isString(item) && filePath.indexOf(item) == -1) {
-          return flag = true;
+          return (flag = true);
         } else if (filePath.match(item) == null) {
-          return flag = true;
+          return (flag = true);
         }
       });
     }
@@ -57,13 +57,13 @@ module.exports = postcss.plugin("postcss-pxtorem", function(options) {
     if (exclude.length !== 0) {
       exclude.forEach(item => {
         if (type.isString(item) && filePath.indexOf(item) !== -1) {
-          return flag = true;
+          return (flag = true);
         } else if (filePath.match(item) !== null) {
-          return flag = true;
+          return (flag = true);
         }
       });
     }
-    if (flag) return
+    if (flag) return;
     css.walkDecls(function(decl, i) {
       // This should be the fastest test and will remove most declarations
       if (decl.value.indexOf("px") === -1) return;
