@@ -74,7 +74,6 @@ module.exports = postcss.plugin("postcss-2rem", function(options) {
         return;
 
       var value = decl.value.replace(pxRegex, pxReplace);
-      console.log(value);
       // if rem unit already exists, do not add or replace
       if (declarationExists(decl.parent, decl.prop, value)) return;
 
